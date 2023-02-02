@@ -1,2 +1,2 @@
 # GB_Python
-Course Python Introdaction
+Course Python Introduction
