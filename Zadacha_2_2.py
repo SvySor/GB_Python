@@ -6,7 +6,11 @@
 
 
 numberInt = int(input(f"Input integer number: "))
+my_list = []
 factorialI = 1
 for i in range(1, numberInt+1):
     factorialI *= i
+    my_list.append(factorialI)
     print(factorialI, end=' ')
+print()
+print(my_list)
