@@ -1,0 +1,15 @@
+Делители числа N : [1, 2, 3, 19, 739, 1187]
+         100000019 function calls in 142.078 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1  105.578  105.578  142.031  142.031 Zadacha_4_2.py:4(<module>)
+100000002   36.453    0.000   36.453    0.000 :0(len)
+        1    0.047    0.047    0.047    0.047 :0(setprofile)
+        0    0.000             0.000          profile:0(profiler)
+        1    0.000    0.000  142.078  142.078 profile:0(<code object <module> at 0x000001c70f0fd2f0, file "Zadacha_4_2.py", line 4>)
+        1    0.000    0.000  142.031  142.031 :0(exec)
+        6    0.000    0.000    0.000    0.000 Zadacha_4_2.py:4(IsSimple)
+        6    0.000    0.000    0.000    0.000 :0(append)
+        1    0.000    0.000    0.000    0.000 :0(print)
