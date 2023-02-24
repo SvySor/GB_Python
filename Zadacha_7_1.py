@@ -15,7 +15,7 @@
 
 def Input_data():
     #poem = input('Введите текст стихотворения: ')
-    poem = 'пара-ра-рам рам-пам-папам па-ра-па-дам'
+    poem = 'Пара-ра-рам Рам-пам-папам Па-ра-па-дам Ап-ра-Ап-ам'
     return poem
 
 def Devide_by_phrase(my_str):
@@ -25,16 +25,25 @@ def Devide_by_phrase(my_str):
 def Syllabe_count(string):
     counter = 0
     string = string.lower()
-    for i in string:
-    
+    letter_list = list(string)
+    for i in letter_list:
+        if i in vowel_list:
+            counter += 1
+    return counter
 
+vowel_list = ('a', 'e', 'i', 'o', 'u', 'y', 'а', 'у', 'о', 'и', 'э', 'ы')
 
-vowel_list = list('a', 'e', 'i', 'o', 'u', 'y', 'а', 'у', 'о', 'и', 'э', 'ы')
-
+rythm_OK = True
 poem = Input_data()
-print(poem)
 poem_list = Devide_by_phrase(poem)
-print(poem_list)
-# Syllabe_Check()
-# Decision()
-# Output()
+count = Syllabe_count(poem_list[0])
+for phrase in poem_list:
+    old_count = count
+    count = Syllabe_count(phrase)
+    if old_count != count:
+        rythm_OK = False
+
+if rythm_OK:
+    print('Парам пам-пам, ритм в порядке')
+else:
+    print('Пам парам, с ритмом не всё в порядке')
