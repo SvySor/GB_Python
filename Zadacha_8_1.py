@@ -17,6 +17,10 @@ def write_data():
 def read_data():
     with open('fio.txt', 'r', encoding='utf-8') as file:
         data = file.readlines()
+        print(data)
+        for i in range(len(data)):
+            data[i] = data[i].split(";")
+        print (data)
         file.close()
     return data
 
@@ -25,7 +29,7 @@ def change_data():
 
 def screen(data):
     for elem in data:
-        print(elem)
+        print(elem, sep = "\t", end = "")
 
 def main():
     data = read_data()
