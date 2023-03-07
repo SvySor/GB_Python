@@ -39,7 +39,7 @@ def selection():            # Подпрограмма запуска модул
         print("Ваш выбор - ", select)
         if select == 1:
             print("Запускаю модуль просмотра данных")
-            screen()
+            show_all()
         elif select == 2:
             print("Запускаю модуль поиска контакта")
         elif select == 3:
@@ -59,7 +59,7 @@ def read_data():                            # Модуль считывания 
         file.close()
     return data
 
-def screen():
+def show_all():
     data = read_data()
     screen_result(data)
 
@@ -97,7 +97,7 @@ def search_data():
 
 def change_data():
     data = read_data()
-    screen()
+    show_all()
     record_ID = input('Введите номер записи для изменения: ')
     change_record_index = data[0].index(record_ID)
     print(data[change_record_index])
@@ -109,6 +109,26 @@ def change_data():
     print(data[change_record_index])
     write_data(data)
     
+def add_record():
+    data = read_data()
+    max_record_ID = data[0][0]
+    for i in range(len(data)):
+        if max_record_ID < data[i][0]:
+            max_record_ID = data[i][0]
+    new_record_ID = int(max_record_ID) + 1
+    print(new_record_ID)
+            # change_record_index = data[0].index(record_ID)
+    # print(data[change_record_index])
+    # data[change_record_index][1] = input('Введите изменения в фамилии: ')
+    # data[change_record_index][2] = input('Введите изменения в имени: ')
+    # data[change_record_index][3] = input('Введите изменения в отчестве: ')
+    # data[change_record_index][4] = input('Введите изменения в номере телефона: ')
+    # print('Изменённая запись:')
+    # print(data[change_record_index])
+    # write_data(data)
+    
+    
+
 def write_data(data):                            # Модуль записи данных в файл
     with open('fio.txt', 'w', encoding='utf-8') as file:
         for i in range(len(data)):
@@ -121,9 +141,10 @@ def main():
     print("\t\t ТЕЛЕФОННЫЙ СПРАВОЧНИК")
     print()
     # selection()
-    # screen()
+    # show_all()
     # search_data()
     # change_data()
+    add_record()
 
 if __name__ == '__main__':
     main()
