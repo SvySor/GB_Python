@@ -42,12 +42,16 @@ def selection():            # Подпрограмма запуска модул
             show_all()
         elif select == 2:
             print("Запускаю модуль поиска контакта")
+            search_data()
         elif select == 3:
             print("Запускаю модуль изменения контакта")
+            change_data()
         elif select == 4:
             print("Запускаю модуль добавления контакта")
+            add_record()
         elif select == 5:
             print("Запускаю модуль удаления контакта")
+            delete_record()
         else:
             isFinish = True
     print("Работа программы закончена. Спасибо")
@@ -99,7 +103,10 @@ def change_data():
     data = read_data()
     show_all()
     record_ID = input('Введите номер записи для изменения: ')
-    change_record_index = data[0].index(record_ID)
+    i = 0
+    while data[i][0] != record_ID:
+        i = i + 1
+    change_record_index = i
     print(data[change_record_index])
     data[change_record_index][1] = input('Введите изменения в фамилии: ')
     data[change_record_index][2] = input('Введите изменения в имени: ')
@@ -116,18 +123,31 @@ def add_record():
         if max_record_ID < data[i][0]:
             max_record_ID = data[i][0]
     new_record_ID = int(max_record_ID) + 1
-    print(new_record_ID)
-            # change_record_index = data[0].index(record_ID)
-    # print(data[change_record_index])
-    # data[change_record_index][1] = input('Введите изменения в фамилии: ')
-    # data[change_record_index][2] = input('Введите изменения в имени: ')
-    # data[change_record_index][3] = input('Введите изменения в отчестве: ')
-    # data[change_record_index][4] = input('Введите изменения в номере телефона: ')
-    # print('Изменённая запись:')
-    # print(data[change_record_index])
-    # write_data(data)
-    
-    
+    new_record = []
+    new_record.append(str(new_record_ID))
+    new_record.append(input('Введите фамилию: '))
+    new_record.append(input('Введите имя: '))
+    new_record.append(input('Введите отчество: '))
+    new_record.append(input('Введите номер телефона: '))
+    data.append(new_record)
+    write_data(data)
+
+def delete_record():
+    data = read_data()
+    show_all()
+    record_ID = input('Введите номер записи для удаления: ')
+    i = 0
+    while data[i][0] != record_ID:
+        i = i + 1
+    delete_record_index = i
+    print(data[delete_record_index])
+    Confirmation = int(input('Введите 0 для подтверждения удаления: '))
+    if Confirmation == False:
+        removed_record = data.pop(delete_record_index)
+        print('Элемент удалён: ', removed_record)
+    else:
+        print('Элемент не удалён')
+    write_data(data)
 
 def write_data(data):                            # Модуль записи данных в файл
     with open('fio.txt', 'w', encoding='utf-8') as file:
@@ -140,11 +160,7 @@ def main():
     print('\n' * 100)
     print("\t\t ТЕЛЕФОННЫЙ СПРАВОЧНИК")
     print()
-    # selection()
-    # show_all()
-    # search_data()
-    # change_data()
-    add_record()
+    selection()
 
 if __name__ == '__main__':
     main()
